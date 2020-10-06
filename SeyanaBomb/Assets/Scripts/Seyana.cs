@@ -29,7 +29,6 @@ public class Seyana : MonoBehaviour
     {
         if (talk.GetState() == Talk.State.TALK_B)
         {
-            talk.SetMaxScale(scale);
             if (talk.GetMaxScale() == scale)
                 transform.position = new Vector2(0, 1.0f);
             else
@@ -72,6 +71,7 @@ public class Seyana : MonoBehaviour
     public void AddScale(float addScale)
     {
         scale += addScale;
+        talk.SetMaxScale(scale);
     }
     public float GetScale()
     {

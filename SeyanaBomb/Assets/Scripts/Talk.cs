@@ -22,9 +22,7 @@ public class Talk : MonoBehaviour
     {
         AudioManager.Instance.PlayBGM("Talk", 0.1f);
         state = State.TALK_A;
-        nowSelifObject = Instantiate(selifLeft, transform);
-        nowSelifObject.GetComponentInChildren<Text>().text = "セヤナー爆弾が\nできたよお姉ちゃん！";
-        AudioManager.Instance.PlaySE("pon", 0.2f);
+        SelifInstantiate(selifLeft, "セヤナー爆弾が\nできたよお姉ちゃん！", true, true);
     }
 
     // Update is called once per frame
@@ -38,55 +36,34 @@ public class Talk : MonoBehaviour
                 {
                     case 0:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "セヤナー爆弾？！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifRight, "セヤナー爆弾？！");
                         break;
                     case 1:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifLeft, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "セヤナーをつなげて\nよく振って\n刺激すると、";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifLeft, "セヤナーをつなげて\nよく振って\n刺激すると、");
                         break;
                     case 2:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifLeft, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "激しい光とともに\n爆散するんだよ！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifLeft, "激しい光とともに\n爆散するんだよ！");
                         break;
                     case 3:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "激しい光とともに爆散？！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifRight, "激しい光とともに爆散？！");
                         break;
                     case 4:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifLeft, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "さっそく\nやってみよう！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifLeft, "さっそく\nやってみよう！");
                         break;
                     case 5:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "なんで？！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifRight, "なんで？！");
                         break;
                     case 6:
                         index++;
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "セヤナーを\nつなげて集めろ！";
 
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "まってまって！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifRight, "まってまって！");
                         break;
                     case 7:
                         index = 0;
@@ -117,9 +94,7 @@ public class Talk : MonoBehaviour
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
 
-                    Destroy(nowSelifObject);
-                    nowSelifObject = Instantiate(selifLeft, transform);
-                    nowSelifObject.GetComponentInChildren<Text>().text = "大きくなったね！";
+                    SelifInstantiate(selifLeft, "大きくなったね！", false);
                 }
             }
 
@@ -129,16 +104,12 @@ public class Talk : MonoBehaviour
                 {
                     case 0:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "うわぁいっぱいおる";
+                        SelifInstantiate(selifRight, "うわぁいっぱいおる", false);
                         talkTime = 0;
                         break;
                     case 1:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "どうすんのこれ";
+                        SelifInstantiate(selifRight, "どうすんのこれ", false);
                         talkTime = 0; 
                         break;
                 }
@@ -155,28 +126,29 @@ public class Talk : MonoBehaviour
                 {
                     case 0:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifRight, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "せ、せやな...";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifRight, "せ、せやな...");
                         break;
                     case 1:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifLeft, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "次は\nしっかり掴んで\n振り回すの！";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifLeft, "次は\nしっかり掴んで\n振り回すの！");
                         break;
                     case 2:
                         index++;
-                        Destroy(nowSelifObject);
-                        nowSelifObject = Instantiate(selifLeft, transform);
-                        nowSelifObject.GetComponentInChildren<Text>().text = "準備はいい？";
-                        AudioManager.Instance.PlaySE("pon", 0.2f);
+                        SelifInstantiate(selifLeft, "準備はいい？");
                         break;
                 }
             }
         }
+    }
+
+    private void SelifInstantiate(GameObject selifObject, string text, bool playSE = true, bool isFirst = false)
+    {
+        if (!isFirst)
+            Destroy(nowSelifObject);
+        nowSelifObject = Instantiate(selifObject, transform);
+        nowSelifObject.GetComponentInChildren<Text>().text = text;
+        if (playSE)
+            AudioManager.Instance.PlaySE("pon", 0.2f);
     }
 
     public State GetState()
