@@ -20,9 +20,11 @@ public class Talk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayBGM("Talk", 0.1f);
         state = State.TALK_A;
         nowSelifObject = Instantiate(selifLeft, transform);
         nowSelifObject.GetComponentInChildren<Text>().text = "セヤナー爆弾が\nできたよお姉ちゃん！";
+        AudioManager.Instance.PlaySE("pon");
     }
 
     // Update is called once per frame
@@ -39,48 +41,59 @@ public class Talk : MonoBehaviour
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifRight, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "セヤナー爆弾？！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 1:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifLeft, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "セヤナーをつなげて\nよく振って\n刺激すると、";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 2:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifLeft, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "激しい光とともに\n爆散するんだよ！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 3:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifRight, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "激しい光とともに爆散？！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 4:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifLeft, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "さっそく\nやってみよう！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 5:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifRight, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "なんで？！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 6:
+                        index++;
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "セヤナーを\nつなげて集めろ！";
 
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifRight, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "まってまって！";
-
+                        AudioManager.Instance.PlaySE("pon");
+                        break;
+                    case 7:
                         index = 0;
                         time = 0;
                         state = State.CONNECT;
+                        AudioManager.Instance.PlayBGM("Connect", 0.1f);
+                        AudioManager.Instance.PlaySE("pii");
                         break;
                 }
             }
@@ -95,15 +108,19 @@ public class Talk : MonoBehaviour
                 GameObject timeObj = Instantiate(timerText, transform);
                 timeObj.GetComponentInChildren<Text>().text = (5 - viewedTime).ToString();
                 viewedTime++;
-            }
-            if (viewedTime == 6)
-            {
-                state = State.TALK_B;
-                index = 0;
                 
-                Destroy(nowSelifObject);
-                nowSelifObject = Instantiate(selifLeft, transform);
-                nowSelifObject.GetComponentInChildren<Text>().text = "大きくなったね！";
+                if (viewedTime == 6)
+                {
+                    state = State.TALK_B;
+                    index = 0;
+                    AudioManager.Instance.PlaySE("pipi");
+                    timeObj.GetComponentInChildren<Text>().text = "そこまで！";
+                    time = 0;
+                
+                    Destroy(nowSelifObject);
+                    nowSelifObject = Instantiate(selifLeft, transform);
+                    nowSelifObject.GetComponentInChildren<Text>().text = "大きくなったね！";
+                }
             }
 
             if (talkTime > 2)
@@ -131,7 +148,8 @@ public class Talk : MonoBehaviour
 
         if (state == State.TALK_B)
         {
-            if (Input.GetMouseButtonDown(0))
+            time += Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) && time > 1.0f)
             {
                 switch (index)
                 {
@@ -140,18 +158,21 @@ public class Talk : MonoBehaviour
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifRight, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "せ、せやな...";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 1:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifLeft, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "次は\nしっかり掴んで\n振り回すの！";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                     case 2:
                         index++;
                         Destroy(nowSelifObject);
                         nowSelifObject = Instantiate(selifLeft, transform);
                         nowSelifObject.GetComponentInChildren<Text>().text = "準備はいい？";
+                        AudioManager.Instance.PlaySE("pon");
                         break;
                 }
             }

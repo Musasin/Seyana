@@ -12,7 +12,7 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.Instance.PlayBGM("Title");
+        AudioManager.Instance.PlayBGM("Title", 0.1f);
         anim1 = GameObject.Find("BigSeyana").GetComponent<Animator>();
         anim2 = GameObject.Find("TitleItems").GetComponent<Animator>();
     }
@@ -22,16 +22,17 @@ public class Title : MonoBehaviour
     {
         animTime += Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !taped)
         {
             anim1.SetBool("Tap", true);
             anim2.SetBool("Tap", true);
             AudioManager.Instance.FadeOutBGM();
+            AudioManager.Instance.PlaySE("machdash1");
             taped = true;
             animTime = 0;
         }
 
-        if (taped && animTime > 1.2f) { 
+        if (taped && animTime > 1.15f) { 
             SceneManager.LoadScene("MainScene");
         }
     }
