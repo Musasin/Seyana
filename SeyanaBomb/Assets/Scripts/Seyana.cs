@@ -31,7 +31,7 @@ public class Seyana : MonoBehaviour
         {
             talk.SetMaxScale(scale);
             if (talk.GetMaxScale() == scale)
-                transform.position = Vector2.zero;
+                transform.position = new Vector2(0, 1.0f);
             else
                 Destroy(gameObject);
         }
@@ -65,6 +65,7 @@ public class Seyana : MonoBehaviour
         {
             return;
         }
+        AudioManager.Instance.PlaySE("pyui");
         isGrip = true;
     }
 
@@ -72,14 +73,19 @@ public class Seyana : MonoBehaviour
     {
         scale += addScale;
     }
+    public float GetScale()
+    {
+        return scale;
+    }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && isGrip)
         {
             isGrip = false;
-            collision.gameObject.GetComponent<Seyana>().AddScale(scale);
-            Destroy(gameObject);
+            AddScale(collision.gameObject.GetComponent<Seyana>().GetScale());
+            AudioManager.Instance.PlaySE("union");
+            Destroy(collision.gameObject);
         }
 
         if (collision.tag == "WallLeft")

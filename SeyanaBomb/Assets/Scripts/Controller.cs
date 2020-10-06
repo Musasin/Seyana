@@ -32,8 +32,6 @@ public class Controller : MonoBehaviour
                     }
                 }
             }
- 
-            Debug.Log(clickedGameObject);
         }
     }
 }
