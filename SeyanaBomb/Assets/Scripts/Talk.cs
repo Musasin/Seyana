@@ -15,7 +15,8 @@ public class Talk : MonoBehaviour
     State state;
     int viewedTime;
     float time, talkTime;
-    float maxScale;
+    float maxScale = 0.5f;
+    GameObject maxSeyanaObject = null;
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +95,35 @@ public class Talk : MonoBehaviour
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
 
-                    SelifInstantiate(selifLeft, "大きくなったね！", false);
+                    switch (maxScale)
+                    {
+                        case 0.5f:
+                            SelifInstantiate(selifLeft, "セヤナーを掴んで\n動かしてあげると\n大きくできるの！", false);
+                            break;
+                        case 1.0f:
+                        case 1.5f:
+                        case 2.0f:
+                            SelifInstantiate(selifLeft, "小さいセヤナーも\nかわいいね！", false);
+                            break;
+                        case 2.5f:
+                        case 3.0f:
+                        case 3.5f:
+                            SelifInstantiate(selifLeft, "大きくなったね！", false);
+                            break;
+                        case 4.0f:
+                        case 4.5f:
+                        case 5.0f:
+                            SelifInstantiate(selifLeft, "いい調子だね！", false);
+                            break;
+                        case 5.5f:
+                        case 6.0f:
+                        case 6.5f:
+                            SelifInstantiate(selifLeft, "わー、おっきい！\nさすがお姉ちゃん！", false);
+                            break;
+                        case 7.0f:
+                            SelifInstantiate(selifLeft, "すごい！\nまとめきっちゃったね！", false);
+                            break;
+                    } 
                 }
             }
 
@@ -164,5 +193,13 @@ public class Talk : MonoBehaviour
     public float GetMaxScale()
     {
         return maxScale;
+    }
+    public void SetMaxSeyana(GameObject obj)
+    {
+        maxSeyanaObject = obj;
+    }
+    public GameObject GetMaxSeyana()
+    {
+        return maxSeyanaObject;
     }
 }

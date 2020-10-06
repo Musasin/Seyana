@@ -29,8 +29,16 @@ public class Seyana : MonoBehaviour
     {
         if (talk.GetState() == Talk.State.TALK_B)
         {
-            if (talk.GetMaxScale() == scale)
+            if (talk.GetMaxSeyana() == gameObject)
+            {
+                return;
+            }
+            if (talk.GetMaxScale() == scale && talk.GetMaxSeyana() == null)
+            {
+                rb.velocity = Vector2.zero;
                 transform.position = new Vector2(0, 1.0f);
+                talk.SetMaxSeyana(gameObject);
+            }
             else
                 Destroy(gameObject);
         }
