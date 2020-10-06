@@ -7,6 +7,7 @@ TagManager:
   - wall
   - WallLeft
   - WallRight
+  - Wall
   layers:
   - Default
   - TransparentFX

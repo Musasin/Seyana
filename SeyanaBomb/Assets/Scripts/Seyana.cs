@@ -20,13 +20,21 @@ public class Seyana : MonoBehaviour
         talk = GameObject.Find("Canvas").GetComponent<Talk>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         scale = transform.localScale.x;
-        velocityX = Random.Range(0.2f, 10.0f);
+        velocityX = Random.Range(0.2f, 5.0f);
         isRight = (Random.Range(0, 1) < 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (talk.GetState() == Talk.State.TALK_B)
+        {
+            talk.SetMaxScale(scale);
+            if (talk.GetMaxScale() == scale)
+                transform.position = Vector2.zero;
+            else
+                Destroy(gameObject);
+        }
         if (talk.GetState() != Talk.State.CONNECT)
         {
             return;
