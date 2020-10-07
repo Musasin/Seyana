@@ -212,10 +212,75 @@ public class Talk : MonoBehaviour
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
                     viewedTime = 0;
+
+                    float powerSum = bluePower + redPower;
+                    if (powerSum < 10)
+                        SelifInstantiate(selifLeft, "すっぽ抜けちゃったかな？", false);
+                    else if (powerSum < 50)
+                        SelifInstantiate(selifLeft, "まぁまぁかな！", false);
+                    else if (powerSum < 100)
+                        SelifInstantiate(selifLeft, "いい感じだね！", false);
+                    else if (powerSum < 200)
+                        SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
+                    else if (powerSum < 300)
+                        SelifInstantiate(selifLeft, "すごいすごい\nこれは期待できるよ！", false);
+                    else if (powerSum < 400)
+                        SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
+                    else
+                        SelifInstantiate(selifLeft, "うわぁ...\nこのレベルのは\n初めて見た", false);
+
                 }
             }
         }
-
+        
+        if (state == State.TALK_C)
+        {
+            time += Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) && time > 1.0f)
+            {
+                switch (index)
+                {
+                    case 0:
+                        index++;
+                        float powerSum = bluePower + redPower;
+                        if (powerSum < 10)
+                            SelifInstantiate(selifLeft, "ほぼ液体やんけ！", false);
+                        else if (powerSum < 100)
+                            SelifInstantiate(selifLeft, "これがこのあと\nどうなって\nしまうんや...", false);
+                        else if (powerSum < 200)
+                            SelifInstantiate(selifLeft, "大丈夫なんかそれ？", false);
+                        else if (powerSum < 300)
+                            SelifInstantiate(selifLeft, "何が？", false);
+                        else if (powerSum < 400)
+                            SelifInstantiate(selifLeft, "何やそれ", false);
+                        else
+                            SelifInstantiate(selifLeft, "手ぇ疲れた", false);
+                        break;
+                    case 1:
+                        index++;
+                        SelifInstantiate(selifLeft, "よーし！\n次が最後の工程だよ！");
+                        break;
+                    case 2:
+                        index++;
+                        SelifInstantiate(selifLeft, "後はひたすらつついて\n発光させよう！");
+                        break;
+                    case 3:
+                        index++;
+                        SelifInstantiate(selifRight, "つついたら光るのが\n謎すぎる");
+                        break;
+                    case 4:
+                        index++;
+                        Destroy(nowOrderText);
+                        nowOrderText = Instantiate(orderText, transform);
+                        nowOrderText.GetComponentInChildren<Text>().text = "とどめだ！\nセヤナーを連打して\n発光させろ！";
+                        SelifInstantiate(selifRight, "とどめって何？！");
+                        state = State.GRIP;
+                        break;
+                    case 5:
+                        break;
+                }
+            }
+        }
 
     }
 
