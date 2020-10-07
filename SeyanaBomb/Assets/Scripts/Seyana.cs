@@ -50,14 +50,6 @@ public class Seyana : MonoBehaviour
         }
         if (talk.GetState() == Talk.State.TALK_C || talk.GetState() == Talk.State.TALK_D)
         {
-            if (talk.GetState() == Talk.State.TALK_D)
-            {
-                float randR = Random.Range(0.2f, 1.0f);
-                float randG = Random.Range(0.2f, 1.0f);
-                float randB = Random.Range(0.2f, 1.0f);
-                sr.color = new Color(randR, randG, randB);
-            }
-
             moveTime += Time.deltaTime;
             if (moveTime > 0.05f)
             {
@@ -65,6 +57,14 @@ public class Seyana : MonoBehaviour
                 transform.position = new Vector2(movePower, 1.0f);
                 isPosRight = !isPosRight;
                 moveTime = 0;
+
+                if (talk.GetState() == Talk.State.TALK_D)
+                {
+                    float randR = Random.Range(0.2f, 1.0f);
+                    float randG = Random.Range(0.2f, 1.0f);
+                    float randB = Random.Range(0.2f, 1.0f);
+                    sr.color = new Color(randR, randG, randB);
+                }
             }
         }
         if (talk.GetState() == Talk.State.LIGHT || talk.GetState() == Talk.State.TALK_D)
@@ -75,7 +75,7 @@ public class Seyana : MonoBehaviour
                 scaleTime = 0;
             }
             transform.localScale = new Vector2(scale * 1.5f - (scale * scaleTime), scale * 1.5f - (scale * scaleTime));
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, scaleTime * 1.5f);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, scaleTime * 2.0f);
         }
         if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.SHAKE)
         {
