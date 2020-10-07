@@ -1524,6 +1524,8 @@ MonoBehaviour:
     type: 3}
   timerText: {fileID: 4400923677205122080, guid: 2f334c7a6f90641279523d8c5d74ddde,
     type: 3}
+  barObject: {fileID: 5020303300815559763, guid: f5ec288e6aa944dbc8dc9a5ce6ff3ed3,
+    type: 3}
 --- !u!1001 &697029319961897764
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ public class Controller : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
- 
             GameObject clickedGameObject = null;
  
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -9,6 +9,7 @@ public class Talk : MonoBehaviour
     public GameObject selifRight;
     public GameObject orderText;
     public GameObject timerText;
+    public GameObject barObject;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
     public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, LIGHT, TALK_D };
@@ -17,6 +18,8 @@ public class Talk : MonoBehaviour
     float time, talkTime;
     float maxScale = 0.5f;
     GameObject maxSeyanaObject = null;
+    GameObject redBar, blueBar;
+    float redPower, bluePower;
 
     // Start is called before the first frame update
     void Start()
@@ -175,6 +178,11 @@ public class Talk : MonoBehaviour
                         Destroy(nowOrderText);
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "セヤナーをつかめ！";
+                        Instantiate(barObject, transform);
+                        blueBar = GameObject.Find("BlueBar");
+                        redBar = GameObject.Find("RedBar");
+
+                        AudioManager.Instance.PlaySE("gan");
                         state = State.GRIP;
                         break;
                     case 5:
@@ -226,7 +234,6 @@ public class Talk : MonoBehaviour
     }
     public void SetMaxScale(float scale)
     {
-        Debug.Log(maxScale);
         if (maxScale < scale)
             maxScale = scale;
     }
@@ -251,5 +258,15 @@ public class Talk : MonoBehaviour
         Destroy(nowOrderText);
         nowOrderText = Instantiate(orderText, transform);
         nowOrderText.GetComponentInChildren<Text>().text = "ふりまわせ！";
+    }
+    public void SetRedPower(float power)
+    {
+        redPower = power;
+        redBar.transform.localScale = new Vector2(1, power / 200);
+    }
+    public void SetBluePower(float power)
+    {
+        bluePower = power;
+        blueBar.transform.localScale = new Vector2(1, power / 200);
     }
 }

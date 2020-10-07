@@ -9,7 +9,8 @@ public class Seyana : MonoBehaviour
     float scale;
     float velocityX;
     bool isRight;
-    float movement;
+    float movementX, movementY;
+    float soundMovementSum;
 
     Rigidbody2D rb;
     Talk talk;
@@ -28,7 +29,6 @@ public class Seyana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(movement);
         if (talk.GetState() == Talk.State.TALK_B)
         {
             if (talk.GetMaxSeyana() == gameObject)
@@ -50,17 +50,43 @@ public class Seyana : MonoBehaviour
             {
                 if (Input.GetMouseButtonUp(0))
                 {
+                    AudioManager.Instance.PlaySE("petyo");
                     isGrip = false;
                 }
                 else
                 {
                     var screenPos = Input.mousePosition;
                     screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
+                    if (screenPos.x < 0 || screenPos.x > 768 || screenPos.y < 0 || screenPos.y > 1024)
+                    {
+                        AudioManager.Instance.PlaySE("petyo");
+                        isGrip = false;
+                        return;
+                    }
+
+                    var worldPos = mainCamera.ScreenToWorldPoint(screenPos);
 
                     if (talk.GetState() == Talk.State.SHAKE)
-                        movement += Mathf.Abs(screenPos.x - transform.position.x) + Mathf.Abs(screenPos.y - transform.position.y);
+                    {
+                        movementX += Mathf.Abs(transform.position.x - worldPos.x) - Time.deltaTime * 5;
+                        movementY += Mathf.Abs(transform.position.y - worldPos.y) - Time.deltaTime * 5;
+                        movementX = Mathf.Max(movementX, 0);
+                        movementY = Mathf.Max(movementY, 0);
+                        talk.SetRedPower(movementX);
+                        talk.SetBluePower(movementY);
+                        
+                        Debug.Log(movementX);
+                        Debug.Log(movementY);
 
-                    transform.position = mainCamera.ScreenToWorldPoint(screenPos);
+                        soundMovementSum += Mathf.Abs(worldPos.x - transform.position.x) + Mathf.Abs(worldPos.y - transform.position.y);
+                        if (soundMovementSum > 30)
+                        {
+                            AudioManager.Instance.PlaySE("buon");
+                            soundMovementSum = 0;
+                        }
+                    }
+
+                    transform.position = worldPos;
                 }
 
             }
