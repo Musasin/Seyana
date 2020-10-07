@@ -11,7 +11,7 @@ public class Talk : MonoBehaviour
     public GameObject timerText;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
-    public enum State { TALK_A = 0,  CONNECT = 1, TALK_B = 2};
+    public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, LIGHT, TALK_D };
     State state;
     int viewedTime;
     float time, talkTime;
@@ -94,6 +94,7 @@ public class Talk : MonoBehaviour
                     AudioManager.Instance.PlaySE("pipi");
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
+                    viewedTime = 0;
 
                     switch (maxScale)
                     {
@@ -121,7 +122,7 @@ public class Talk : MonoBehaviour
                             SelifInstantiate(selifLeft, "わー、おっきい！\nさすがお姉ちゃん！", false);
                             break;
                         case 7.0f:
-                            SelifInstantiate(selifLeft, "すごい！\nまとめきっちゃったね！", false);
+                            SelifInstantiate(selifLeft, "すごい！\n纏めきっちゃったね！", false);
                             break;
                     } 
                 }
@@ -165,9 +166,48 @@ public class Talk : MonoBehaviour
                         index++;
                         SelifInstantiate(selifLeft, "準備はいい？");
                         break;
+                    case 3:
+                        index++;
+                        SelifInstantiate(selifRight, "掴めるんかコイツ");
+                        break;
+                    case 4:
+                        index++;
+                        Destroy(nowOrderText);
+                        nowOrderText = Instantiate(orderText, transform);
+                        nowOrderText.GetComponentInChildren<Text>().text = "セヤナーをつかめ！";
+                        state = State.GRIP;
+                        break;
+                    case 5:
+                        break;
                 }
             }
         }
+
+
+        if (state == State.SHAKE)
+        {
+            time += Time.deltaTime;
+            talkTime += Time.deltaTime;
+
+            if (5 - viewedTime > 5 - time)
+            {
+                GameObject timeObj = Instantiate(timerText, transform);
+                timeObj.GetComponentInChildren<Text>().text = (5 - viewedTime).ToString();
+                viewedTime++;
+
+                if (viewedTime == 6)
+                {
+                    state = State.TALK_C;
+                    index = 0;
+                    AudioManager.Instance.PlaySE("pipi");
+                    timeObj.GetComponentInChildren<Text>().text = "そこまで！";
+                    time = 0;
+                    viewedTime = 0;
+                }
+            }
+        }
+
+
     }
 
     private void SelifInstantiate(GameObject selifObject, string text, bool playSE = true, bool isFirst = false)
@@ -201,5 +241,15 @@ public class Talk : MonoBehaviour
     public GameObject GetMaxSeyana()
     {
         return maxSeyanaObject;
+    }
+    public void StartShale()
+    {
+        index = 0;
+        time = 0;
+        AudioManager.Instance.PlaySE("pii");
+        state = State.SHAKE;
+        Destroy(nowOrderText);
+        nowOrderText = Instantiate(orderText, transform);
+        nowOrderText.GetComponentInChildren<Text>().text = "ふりまわせ！";
     }
 }

@@ -9,6 +9,7 @@ public class Seyana : MonoBehaviour
     float scale;
     float velocityX;
     bool isRight;
+    float movement;
 
     Rigidbody2D rb;
     Talk talk;
@@ -27,6 +28,7 @@ public class Seyana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(movement);
         if (talk.GetState() == Talk.State.TALK_B)
         {
             if (talk.GetMaxSeyana() == gameObject)
@@ -42,38 +44,44 @@ public class Seyana : MonoBehaviour
             else
                 Destroy(gameObject);
         }
-        if (talk.GetState() != Talk.State.CONNECT)
+        if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.SHAKE)
         {
-            return;
-        }
-        if (isGrip)
-        {
-            if (Input.GetMouseButtonUp(0))
+            if (isGrip)
             {
-                isGrip = false;
-            } 
-            else
-            {
-                var screenPos = Input.mousePosition;
-                screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
-                transform.position = mainCamera.ScreenToWorldPoint(screenPos);
-            }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    isGrip = false;
+                }
+                else
+                {
+                    var screenPos = Input.mousePosition;
+                    screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
 
-        } else
-        {
-            rb.velocity = new Vector2(velocityX * (isRight ? 1 : -1), rb.velocity.y);
-            transform.localScale = new Vector2(isRight ? -scale : scale, scale);
+                    if (talk.GetState() == Talk.State.SHAKE)
+                        movement += Mathf.Abs(screenPos.x - transform.position.x) + Mathf.Abs(screenPos.y - transform.position.y);
+
+                    transform.position = mainCamera.ScreenToWorldPoint(screenPos);
+                }
+
+            }
+            else if (talk.GetState() == Talk.State.CONNECT)
+            {
+                rb.velocity = new Vector2(velocityX * (isRight ? 1 : -1), rb.velocity.y);
+                transform.localScale = new Vector2(isRight ? -scale : scale, scale);
+            }
         }
     }
 
     public void Grip()
     {
-        if (talk.GetState() != Talk.State.CONNECT)
+        if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.GRIP || talk.GetState() == Talk.State.SHAKE)
         {
-            return;
+            if (talk.GetState() == Talk.State.GRIP)
+                talk.StartShale();
+
+            AudioManager.Instance.PlaySE("pyui");
+            isGrip = true;
         }
-        AudioManager.Instance.PlaySE("pyui");
-        isGrip = true;
     }
 
     public void AddScale(float addScale)
