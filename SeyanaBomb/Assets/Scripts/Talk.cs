@@ -178,6 +178,7 @@ public class Talk : MonoBehaviour
                         Destroy(nowOrderText);
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "セヤナーをつかめ！";
+                        nowOrderText.GetComponentInChildren<Text>().fontSize = 90;
                         Instantiate(barObject, transform);
                         blueBar = GameObject.Find("BlueBar");
                         redBar = GameObject.Find("RedBar");
@@ -258,6 +259,7 @@ public class Talk : MonoBehaviour
         Destroy(nowOrderText);
         nowOrderText = Instantiate(orderText, transform);
         nowOrderText.GetComponentInChildren<Text>().text = "ふりまわせ！";
+        nowOrderText.GetComponentInChildren<Text>().fontSize = 120;
     }
     public void SetRedPower(float power)
     {
