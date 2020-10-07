@@ -12,7 +12,7 @@ public class Talk : MonoBehaviour
     public GameObject barObject;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
-    public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, LIGHT, TALK_D };
+    public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, CLICK, LIGHT, TALK_D };
     State state;
     int viewedTime;
     float time, talkTime;
@@ -20,6 +20,7 @@ public class Talk : MonoBehaviour
     GameObject maxSeyanaObject = null;
     GameObject redBar, blueBar;
     float redPower, bluePower;
+    int clickCount;
 
     // Start is called before the first frame update
     void Start()
@@ -212,6 +213,7 @@ public class Talk : MonoBehaviour
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
                     viewedTime = 0;
+                    maxSeyanaObject.GetComponent<Seyana>().ResetPos();
 
                     float powerSum = bluePower + redPower;
                     if (powerSum < 10)
@@ -223,7 +225,7 @@ public class Talk : MonoBehaviour
                     else if (powerSum < 150)
                         SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
                     else if (powerSum < 250)
-                        SelifInstantiate(selifLeft, "すごいすごい\nこれは期待できるよ！", false);
+                        SelifInstantiate(selifLeft, "すごいすごい！\nこれは期待できるよ!", false);
                     else if (powerSum < 400)
                         SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
                     else
@@ -259,7 +261,7 @@ public class Talk : MonoBehaviour
                         index++;
                         float powerSum = bluePower + redPower;
                         if (powerSum < 10)
-                            SelifInstantiate(selifRight, "ほぼ液体やんけ！", false);
+                            SelifInstantiate(selifRight, "だって\nほぼ液体やんけ！", false);
                         else if (powerSum < 100)
                             SelifInstantiate(selifRight, "これがこのあと\nどうなって\nしまうんや...", false);
                         else if (powerSum < 150)
@@ -289,9 +291,73 @@ public class Talk : MonoBehaviour
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "とどめだ！\nセヤナーを連打して\n発光させろ！";
                         SelifInstantiate(selifRight, "とどめって何？！");
-                        state = State.GRIP;
+                        state = State.CLICK;
                         break;
                     case 5:
+                        break;
+                }
+            }
+        }
+
+        if (state == State.CLICK)
+        {
+            index = 0;
+            time = 0;
+            AudioManager.Instance.PlaySE("pii");
+            state = State.LIGHT;
+        }
+
+        if (state == State.LIGHT)
+        {
+            time += Time.deltaTime;
+            talkTime += Time.deltaTime;
+
+            if (5 - viewedTime > 5 - time)
+            {
+                GameObject timeObj = Instantiate(timerText, transform);
+                timeObj.GetComponentInChildren<Text>().text = (5 - viewedTime).ToString();
+                viewedTime++;
+
+                if (viewedTime == 6)
+                {
+                    state = State.TALK_D;
+                    index = 0;
+                    AudioManager.Instance.PlaySE("pipi");
+                    timeObj.GetComponentInChildren<Text>().text = "そこまで！";
+                    time = 0;
+                    viewedTime = 0;
+                    maxSeyanaObject.GetComponent<Seyana>().ResetPos();
+
+                    float powerSum = bluePower + redPower;
+                    if (powerSum < 10)
+                        SelifInstantiate(selifLeft, "すっぽ抜けちゃったかな？", false);
+                    else if (powerSum < 50)
+                        SelifInstantiate(selifLeft, "まぁまぁかな！", false);
+                    else if (powerSum < 100)
+                        SelifInstantiate(selifLeft, "いい感じだね！", false);
+                    else if (powerSum < 150)
+                        SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
+                    else if (powerSum < 250)
+                        SelifInstantiate(selifLeft, "すごいすごい！\nこれは\n期待できるよ！", false);
+                    else if (powerSum < 400)
+                        SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
+                    else
+                        SelifInstantiate(selifLeft, "うわぁ...\nこのレベルのは\n初めて見た", false);
+
+                }
+            } else if (talkTime > 2)
+            {
+                switch (index)
+                {
+                    case 0:
+                        index++;
+                        SelifInstantiate(selifRight, "ぬるぬるする", false);
+                        talkTime = 0;
+                        break;
+                    case 1:
+                        index++;
+                        SelifInstantiate(selifRight, "ふおおおおおお", false);
+                        talkTime = 0; 
                         break;
                 }
             }
@@ -350,5 +416,9 @@ public class Talk : MonoBehaviour
     {
         bluePower = power;
         blueBar.transform.localScale = new Vector2(1, power / 200);
+    }
+    public void AddClickCount()
+    {
+        clickCount++;
     }
 }

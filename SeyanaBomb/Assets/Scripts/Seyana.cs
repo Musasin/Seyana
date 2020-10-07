@@ -14,6 +14,9 @@ public class Seyana : MonoBehaviour
 
     Rigidbody2D rb;
     Talk talk;
+    bool isPosRight;
+    float moveTime, scaleTime;
+    SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class Seyana : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         talk = GameObject.Find("Canvas").GetComponent<Talk>();
         mainCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
+        sr = this.GetComponent<SpriteRenderer>();
         scale = transform.localScale.x;
         velocityX = Random.Range(0.2f, 5.0f);
         isRight = (Random.Range(0, 1) < 0.5f);
@@ -43,6 +47,35 @@ public class Seyana : MonoBehaviour
             }
             else
                 Destroy(gameObject);
+        }
+        if (talk.GetState() == Talk.State.TALK_C || talk.GetState() == Talk.State.TALK_D)
+        {
+            if (talk.GetState() == Talk.State.TALK_D)
+            {
+                float randR = Random.Range(0.2f, 1.0f);
+                float randG = Random.Range(0.2f, 1.0f);
+                float randB = Random.Range(0.2f, 1.0f);
+                sr.color = new Color(randR, randG, randB);
+            }
+
+            moveTime += Time.deltaTime;
+            if (moveTime > 0.05f)
+            {
+                float movePower = (movementX + movementY) / 1000 * (isPosRight ? 1 : -1);
+                transform.position = new Vector2(movePower, 1.0f);
+                isPosRight = !isPosRight;
+                moveTime = 0;
+            }
+        }
+        if (talk.GetState() == Talk.State.LIGHT || talk.GetState() == Talk.State.TALK_D)
+        {
+            scaleTime += Time.deltaTime;
+            if (scaleTime > 0.5f)
+            {
+                scaleTime = 0;
+            }
+            transform.localScale = new Vector2(scale * 1.5f - (scale * scaleTime), scale * 1.5f - (scale * scaleTime));
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, scaleTime * 1.5f);
         }
         if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.SHAKE)
         {
@@ -100,7 +133,15 @@ public class Seyana : MonoBehaviour
 
     public void Grip()
     {
-        if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.GRIP || talk.GetState() == Talk.State.SHAKE)
+        if (talk.GetState() == Talk.State.CLICK || talk.GetState() == Talk.State.LIGHT)
+        {
+            talk.AddClickCount();
+            float randR = Random.Range(0.2f, 1.0f);
+            float randG = Random.Range(0.2f, 1.0f);
+            float randB = Random.Range(0.2f, 1.0f);
+            sr.color = new Color(randR, randG, randB);
+        }
+        else if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.GRIP || talk.GetState() == Talk.State.SHAKE)
         {
             if (talk.GetState() == Talk.State.GRIP)
                 talk.StartShale();
@@ -134,5 +175,11 @@ public class Seyana : MonoBehaviour
             isRight = true;
         if (collision.tag == "WallRight")
             isRight = false;
+    }
+
+    public void ResetPos()
+    {
+        rb.velocity = Vector2.zero;
+        transform.position = new Vector2(0, 1.0f);
     }
 }
