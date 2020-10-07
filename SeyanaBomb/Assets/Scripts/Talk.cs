@@ -220,15 +220,30 @@ public class Talk : MonoBehaviour
                         SelifInstantiate(selifLeft, "まぁまぁかな！", false);
                     else if (powerSum < 100)
                         SelifInstantiate(selifLeft, "いい感じだね！", false);
-                    else if (powerSum < 200)
+                    else if (powerSum < 150)
                         SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
-                    else if (powerSum < 300)
+                    else if (powerSum < 250)
                         SelifInstantiate(selifLeft, "すごいすごい\nこれは期待できるよ！", false);
                     else if (powerSum < 400)
                         SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
                     else
                         SelifInstantiate(selifLeft, "うわぁ...\nこのレベルのは\n初めて見た", false);
 
+                }
+            } else if (talkTime > 2)
+            {
+                switch (index)
+                {
+                    case 0:
+                        index++;
+                        SelifInstantiate(selifRight, "ぬるぬるする", false);
+                        talkTime = 0;
+                        break;
+                    case 1:
+                        index++;
+                        SelifInstantiate(selifRight, "ふおおおおおお", false);
+                        talkTime = 0; 
+                        break;
                 }
             }
         }
@@ -244,25 +259,25 @@ public class Talk : MonoBehaviour
                         index++;
                         float powerSum = bluePower + redPower;
                         if (powerSum < 10)
-                            SelifInstantiate(selifLeft, "ほぼ液体やんけ！", false);
+                            SelifInstantiate(selifRight, "ほぼ液体やんけ！", false);
                         else if (powerSum < 100)
-                            SelifInstantiate(selifLeft, "これがこのあと\nどうなって\nしまうんや...", false);
-                        else if (powerSum < 200)
-                            SelifInstantiate(selifLeft, "大丈夫なんかそれ？", false);
-                        else if (powerSum < 300)
-                            SelifInstantiate(selifLeft, "何が？", false);
+                            SelifInstantiate(selifRight, "これがこのあと\nどうなって\nしまうんや...", false);
+                        else if (powerSum < 150)
+                            SelifInstantiate(selifRight, "大丈夫なんかそれ？", false);
+                        else if (powerSum < 250)
+                            SelifInstantiate(selifRight, "何が？", false);
                         else if (powerSum < 400)
-                            SelifInstantiate(selifLeft, "何やそれ", false);
+                            SelifInstantiate(selifRight, "何やそれ", false);
                         else
-                            SelifInstantiate(selifLeft, "手ぇ疲れた", false);
+                            SelifInstantiate(selifRight, "手ぇ疲れた", false);
                         break;
                     case 1:
                         index++;
-                        SelifInstantiate(selifLeft, "よーし！\n次が最後の工程だよ！");
+                        SelifInstantiate(selifLeft, "よーし！次が\n最後の工程だよ！");
                         break;
                     case 2:
                         index++;
-                        SelifInstantiate(selifLeft, "後はひたすらつついて\n発光させよう！");
+                        SelifInstantiate(selifLeft, "後は\nひたすらつついて\n発光させよう！");
                         break;
                     case 3:
                         index++;
