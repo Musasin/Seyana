@@ -10,6 +10,7 @@ public class Talk : MonoBehaviour
     public GameObject orderText;
     public GameObject timerText;
     public GameObject barObject;
+    public GameObject flashObject;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
     public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, CLICK, LIGHT, TALK_D };
@@ -328,22 +329,10 @@ public class Talk : MonoBehaviour
                     time = 0;
                     viewedTime = 0;
                     maxSeyanaObject.GetComponent<Seyana>().ResetPos();
-
-                    if (clickCount < 10)
-                        SelifInstantiate(selifLeft, "すっぽ抜けちゃったかな？", false);
-                    else if (clickCount < 20)
-                        SelifInstantiate(selifLeft, "まぁまぁかな！", false);
-                    else if (clickCount < 30)
-                        SelifInstantiate(selifLeft, "いい感じだね！", false);
-                    else if (clickCount < 40)
-                        SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
-                    else if (clickCount < 50)
-                        SelifInstantiate(selifLeft, "すごいすごい！\nこれは\n期待できるよ！", false);
-                    else if (clickCount < 60)
-                        SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
-                    else
-                        SelifInstantiate(selifLeft, "うわぁ...\nこのレベルのは\n初めて見た", false);
-
+                    
+                    SelifInstantiate(selifRight, "うわあああああ！！", false);
+                    Instantiate(flashObject, transform);
+                    AudioManager.Instance.PlaySE("flash");
                 }
             } else if (talkTime > 2)
             {
@@ -351,18 +340,18 @@ public class Talk : MonoBehaviour
                 {
                     case 0:
                         index++;
-                        SelifInstantiate(selifRight, "ぬるぬるする", false);
+                        SelifInstantiate(selifRight, "くぬぬぬぬぬ", false);
                         talkTime = 0;
                         break;
                     case 1:
                         index++;
-                        SelifInstantiate(selifRight, "ふおおおおおお", false);
+                        SelifInstantiate(selifRight, "うおおおおおお", false);
                         talkTime = 0; 
                         break;
                 }
             }
         }
-
+        
     }
 
     private void SelifInstantiate(GameObject selifObject, string text, bool playSE = true, bool isFirst = false)
