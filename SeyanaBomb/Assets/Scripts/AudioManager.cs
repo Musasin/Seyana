@@ -85,7 +85,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         }
     }
 
-    public void PlaySE(string seName, float volume = 1.0f, bool loop = false)
+    public void PlaySE(string seName, float volume = 1.0f, bool loop = false, float pitch = 1.0f)
     {
         if (!this.seDict.ContainsKey(seName))
             throw new ArgumentException(seName + " not found", "seName");
@@ -105,7 +105,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
         source.clip = this.seDict[seName];
         source.volume = volume;
-        source.pitch = 1.0f;
+        source.pitch = pitch;
         source.loop = loop;
         source.Play();
     }

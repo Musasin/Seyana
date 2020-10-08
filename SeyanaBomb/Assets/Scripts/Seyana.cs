@@ -18,6 +18,8 @@ public class Seyana : MonoBehaviour
     float moveTime, scaleTime;
     SpriteRenderer sr;
 
+    float voiceTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +30,27 @@ public class Seyana : MonoBehaviour
         scale = transform.localScale.x;
         velocityX = Random.Range(0.2f, 5.0f);
         isRight = (Random.Range(0, 1) < 0.5f);
+        voiceTime = Random.Range(0, 5.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (talk.GetState() != Talk.State.TALK_A)
+        {
+            voiceTime += Time.deltaTime;
+
+            if (voiceTime > 5) {
+                voiceTime = 0;
+
+                int rand = Random.Range(0, 9);
+                string voiceName = "seyana-" + rand;
+                AudioManager.Instance.PlaySE(voiceName, 0.2f, false, 1.1f - (scale / 10));
+            }
+
+
+        }
+
         if (talk.GetState() == Talk.State.TALK_B)
         {
             if (talk.GetMaxSeyana() == gameObject)

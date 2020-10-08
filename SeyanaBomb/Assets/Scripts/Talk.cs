@@ -328,18 +328,17 @@ public class Talk : MonoBehaviour
                     viewedTime = 0;
                     maxSeyanaObject.GetComponent<Seyana>().ResetPos();
 
-                    float powerSum = bluePower + redPower;
-                    if (powerSum < 10)
+                    if (clickCount < 10)
                         SelifInstantiate(selifLeft, "すっぽ抜けちゃったかな？", false);
-                    else if (powerSum < 50)
+                    else if (clickCount < 20)
                         SelifInstantiate(selifLeft, "まぁまぁかな！", false);
-                    else if (powerSum < 100)
+                    else if (clickCount < 30)
                         SelifInstantiate(selifLeft, "いい感じだね！", false);
-                    else if (powerSum < 150)
+                    else if (clickCount < 40)
                         SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
-                    else if (powerSum < 250)
+                    else if (clickCount < 50)
                         SelifInstantiate(selifLeft, "すごいすごい！\nこれは\n期待できるよ！", false);
-                    else if (powerSum < 400)
+                    else if (clickCount < 60)
                         SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
                     else
                         SelifInstantiate(selifLeft, "うわぁ...\nこのレベルのは\n初めて見た", false);
@@ -420,5 +419,6 @@ public class Talk : MonoBehaviour
     public void AddClickCount()
     {
         clickCount++;
+        Debug.Log(clickCount);
     }
 }
