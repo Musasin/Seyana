@@ -18,13 +18,14 @@ public class Talk : MonoBehaviour
     float time, talkTime;
     float maxScale = 0.5f;
     GameObject maxSeyanaObject = null;
-    GameObject redBar, blueBar;
+    GameObject redBar, blueBar, clickBar;
     float redPower, bluePower;
     int clickCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        clickBar = GameObject.Find("ClickBar");
         AudioManager.Instance.PlayBGM("Talk", 0.1f);
         state = State.TALK_A;
         SelifInstantiate(selifLeft, "セヤナー爆弾が\nできたよお姉ちゃん！", true, true);
@@ -261,17 +262,17 @@ public class Talk : MonoBehaviour
                         index++;
                         float powerSum = bluePower + redPower;
                         if (powerSum < 10)
-                            SelifInstantiate(selifRight, "だって\nほぼ液体やんけ！", false);
+                            SelifInstantiate(selifRight, "だって\nほぼ液体やんけ！");
                         else if (powerSum < 100)
-                            SelifInstantiate(selifRight, "これがこのあと\nどうなって\nしまうんや...", false);
+                            SelifInstantiate(selifRight, "これがこのあと\nどうなって\nしまうんや...");
                         else if (powerSum < 150)
-                            SelifInstantiate(selifRight, "大丈夫なんかそれ？", false);
+                            SelifInstantiate(selifRight, "大丈夫なんかそれ？");
                         else if (powerSum < 250)
-                            SelifInstantiate(selifRight, "何が？", false);
+                            SelifInstantiate(selifRight, "何が？");
                         else if (powerSum < 400)
-                            SelifInstantiate(selifRight, "何やそれ", false);
+                            SelifInstantiate(selifRight, "何やそれ");
                         else
-                            SelifInstantiate(selifRight, "手ぇ疲れた", false);
+                            SelifInstantiate(selifRight, "手ぇ疲れた");
                         break;
                     case 1:
                         index++;
@@ -419,6 +420,7 @@ public class Talk : MonoBehaviour
     public void AddClickCount()
     {
         clickCount++;
+        clickBar.transform.localScale = new Vector3(1, (float)clickCount / 50, 1);
         Debug.Log(clickCount);
     }
 }

@@ -48,6 +48,9 @@ TagManager:
   - name: BackGround
     uniqueID: 3975189555
     locked: 0
+  - name: BackGround2
+    uniqueID: 2902964185
+    locked: 0
   - name: Map
     uniqueID: 2869505675
     locked: 0

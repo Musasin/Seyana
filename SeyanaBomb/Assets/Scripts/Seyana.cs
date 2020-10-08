@@ -30,7 +30,7 @@ public class Seyana : MonoBehaviour
         scale = transform.localScale.x;
         velocityX = Random.Range(0.2f, 5.0f);
         isRight = (Random.Range(0, 1) < 0.5f);
-        voiceTime = Random.Range(0, 5.0f);
+        voiceTime = Random.Range(0, 4.0f);
     }
 
     // Update is called once per frame
@@ -40,12 +40,9 @@ public class Seyana : MonoBehaviour
         {
             voiceTime += Time.deltaTime;
 
-            if (voiceTime > 5) {
+            if (voiceTime > 4) {
                 voiceTime = 0;
-
-                int rand = Random.Range(0, 9);
-                string voiceName = "seyana-" + rand;
-                AudioManager.Instance.PlaySE(voiceName, 0.2f, false, 1.1f - (scale / 10));
+                PlayVoice();
             }
 
 
@@ -62,6 +59,8 @@ public class Seyana : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 transform.position = new Vector2(0, 1.0f);
                 talk.SetMaxSeyana(gameObject);
+                voiceTime = 0;
+                PlayVoice();
             }
             else
                 Destroy(gameObject);
@@ -158,6 +157,7 @@ public class Seyana : MonoBehaviour
             float randG = Random.Range(0.2f, 1.0f);
             float randB = Random.Range(0.2f, 1.0f);
             sr.color = new Color(randR, randG, randB);
+            AudioManager.Instance.PlaySE("click", 0.1f);
         }
         else if (talk.GetState() == Talk.State.CONNECT || talk.GetState() == Talk.State.GRIP || talk.GetState() == Talk.State.SHAKE)
         {
@@ -199,5 +199,12 @@ public class Seyana : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = new Vector2(0, 1.0f);
+    }
+
+    void PlayVoice()
+    {
+        int rand = Random.Range(0, 9);
+        string voiceName = "seyana-" + rand;
+        AudioManager.Instance.PlaySE(voiceName, 0.2f, false, 1.1f - (scale / 10));
     }
 }
