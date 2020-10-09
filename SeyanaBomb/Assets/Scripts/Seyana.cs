@@ -17,6 +17,7 @@ public class Seyana : MonoBehaviour
     bool isPosRight;
     float moveTime, scaleTime;
     SpriteRenderer sr;
+    int lastRand = -1;
 
     float voiceTime;
 
@@ -125,9 +126,6 @@ public class Seyana : MonoBehaviour
                         talk.SetRedPower(movementX);
                         talk.SetBluePower(movementY);
                         
-                        Debug.Log(movementX);
-                        Debug.Log(movementY);
-
                         soundMovementSum += Mathf.Abs(worldPos.x - transform.position.x) + Mathf.Abs(worldPos.y - transform.position.y);
                         if (soundMovementSum > 30)
                         {
@@ -203,7 +201,9 @@ public class Seyana : MonoBehaviour
 
     void PlayVoice()
     {
-        int rand = Random.Range(0, 9);
+        int rand = Random.Range(0, 10);
+        if (rand == lastRand) rand = Random.Range(0, 10); // 同じのを2回再生しそうな時は一回だけ再抽選する
+        lastRand = rand;
         string voiceName = "seyana-" + rand;
         AudioManager.Instance.PlaySE(voiceName, 0.2f, false, 1.1f - (scale / 10));
     }

@@ -227,7 +227,7 @@ public class Talk : MonoBehaviour
                     else if (powerSum < 150)
                         SelifInstantiate(selifLeft, "すごい！\n泡立ってきたよ！", false);
                     else if (powerSum < 250)
-                        SelifInstantiate(selifLeft, "すごいすごい！\nこれは期待できるよ!", false);
+                        SelifInstantiate(selifLeft, "すごいすごい！\nこれは期待できる!", false);
                     else if (powerSum < 400)
                         SelifInstantiate(selifLeft, "ひょっとして\nセヤナー振りの\nプロだったりする？", false);
                     else
