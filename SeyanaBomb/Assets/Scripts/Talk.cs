@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Talk : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Talk : MonoBehaviour
     public GameObject timerText;
     public GameObject barObject;
     public GameObject flashObject;
+    public GameObject endingObject;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
     public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, CLICK, LIGHT, TALK_D, RESULT };
@@ -386,6 +388,11 @@ public class Talk : MonoBehaviour
             {
                 index++;
                 AudioManager.Instance.PlayBGM("Talk", 0.1f);
+                SelifInstantiate(selifRight, "あれ...?\nなんともないな");
+            }
+
+            if (index >= 9 && time > 3.0f) {
+                SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
             }
 
             if (Input.GetMouseButtonDown(0) && time > 1.0f)
@@ -394,24 +401,37 @@ public class Talk : MonoBehaviour
                 {
                     case 1:
                         index++;
-                        SelifInstantiate(selifRight, "あれ...?\nなんともないな");
+                        SelifInstantiate(selifLeft, "ありゃま、\n不発だったかな？");
                         break;
                     case 2:
                         index++;
-                        SelifInstantiate(selifLeft, "次は\nしっかり掴んで\n振り回すの！");
+                        SelifInstantiate(selifRight, "何事も無いなら\nそれが一番やね");
                         break;
                     case 3:
                         index++;
-                        SelifInstantiate(selifLeft, "準備はいい？");
+                        SelifInstantiate(selifLeft, "うーん、仕込みが\n甘かったかなぁ");
                         break;
                     case 4:
                         index++;
-                        SelifInstantiate(selifRight, "掴めるんかコイツ");
+                        SelifInstantiate(selifRight, "気が済んだなら\n帰るで");
                         break;
                     case 5:
                         index++;
+                        SelifInstantiate(selifLeft, "あっ、待ってよ\nお姉ちゃん！");
                         break;
                     case 6:
+                        index++;
+                        SelifInstantiate(selifRight, "あと連れてきた\nセヤナーもちゃんと\n面倒見るんやで");
+                        break;
+                    case 7:
+                        index++;
+                        SelifInstantiate(selifLeft, "はぁーい");
+                        break;
+                    case 8:
+                        index++;
+                        AudioManager.Instance.FadeOutBGM();
+                        Instantiate(endingObject, transform);
+                        time = 0;
                         break;
                 }
             }

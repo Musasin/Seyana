@@ -37,6 +37,11 @@ public class Seyana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (talk.GetState() == Talk.State.RESULT)
+        {
+            sr.color = new Color(1, 1, 1);
+        }
+
         if (talk.GetState() != Talk.State.TALK_A && talk.GetState() != Talk.State.TALK_D)
         {
             voiceTime += Time.deltaTime;
@@ -45,8 +50,6 @@ public class Seyana : MonoBehaviour
                 voiceTime = 0;
                 PlayVoice();
             }
-
-
         }
 
         if (talk.GetState() == Talk.State.TALK_B)

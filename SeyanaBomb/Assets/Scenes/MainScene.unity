@@ -1607,6 +1607,8 @@ MonoBehaviour:
     type: 3}
   flashObject: {fileID: 2974478611745833450, guid: 89dc0fc2c0eab4e42b6de7b5bc7cb8d9,
     type: 3}
+  endingObject: {fileID: 7385716242820917233, guid: 98e0780e5586945c8a69283314fcb0ff,
+    type: 3}
 --- !u!1001 &697029319961897764
 PrefabInstance:
   m_ObjectHideFlags: 0
