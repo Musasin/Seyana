@@ -13,13 +13,13 @@ public class Talk : MonoBehaviour
     public GameObject flashObject;
     GameObject nowSelifObject, nowOrderText;
     int index = 0;
-    public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, CLICK, LIGHT, TALK_D };
+    public enum State { TALK_A, CONNECT, TALK_B, GRIP, SHAKE, TALK_C, CLICK, LIGHT, TALK_D, RESULT };
     State state;
     int viewedTime;
     float time, talkTime;
     float maxScale = 0.5f;
     GameObject maxSeyanaObject = null;
-    GameObject redBar, blueBar, clickBar;
+    GameObject redBar, blueBar, clickBar, flash, bar;
     float redPower, bluePower;
     int clickCount;
 
@@ -185,7 +185,7 @@ public class Talk : MonoBehaviour
                         nowOrderText = Instantiate(orderText, transform);
                         nowOrderText.GetComponentInChildren<Text>().text = "セヤナーをつかめ！";
                         nowOrderText.GetComponentInChildren<Text>().fontSize = 90;
-                        Instantiate(barObject, transform);
+                        bar = Instantiate(barObject, transform);
                         blueBar = GameObject.Find("BlueBar");
                         redBar = GameObject.Find("RedBar");
 
@@ -338,7 +338,7 @@ public class Talk : MonoBehaviour
                     maxSeyanaObject.GetComponent<Seyana>().ResetPos();
                     
                     SelifInstantiate(selifRight, "うわあああああ！！", false);
-                    Instantiate(flashObject, transform);
+                    flash = Instantiate(flashObject, transform);
                     AudioManager.Instance.PlaySE("flash");
                     AudioManager.Instance.FadeOutBGM();
 
@@ -363,7 +363,59 @@ public class Talk : MonoBehaviour
                 }
             }
         }
+
+        if (state == State.TALK_D)
+        {
+            time += Time.deltaTime;
+            if (time > 3)
+            {
+                state = State.RESULT;
+                flash.GetComponent<Animator>().SetBool("isDisappear", true);
+                Destroy(bar);
+                Destroy(clickBar);
+                Destroy(nowOrderText);
+                time = 0;
+                index = 0;
+            }
+        }
         
+        if (state == State.RESULT)
+        {
+            time += Time.deltaTime;
+            if (index == 0 && time > 1.0f)
+            {
+                index++;
+                AudioManager.Instance.PlayBGM("Talk", 0.1f);
+            }
+
+            if (Input.GetMouseButtonDown(0) && time > 1.0f)
+            {
+                switch (index)
+                {
+                    case 1:
+                        index++;
+                        SelifInstantiate(selifRight, "あれ...?\nなんともないな");
+                        break;
+                    case 2:
+                        index++;
+                        SelifInstantiate(selifLeft, "次は\nしっかり掴んで\n振り回すの！");
+                        break;
+                    case 3:
+                        index++;
+                        SelifInstantiate(selifLeft, "準備はいい？");
+                        break;
+                    case 4:
+                        index++;
+                        SelifInstantiate(selifRight, "掴めるんかコイツ");
+                        break;
+                    case 5:
+                        index++;
+                        break;
+                    case 6:
+                        break;
+                }
+            }
+        }
     }
 
     private void SelifInstantiate(GameObject selifObject, string text, bool playSE = true, bool isFirst = false)

@@ -19,5 +19,8 @@ public class StaticValues : MonoBehaviour
     {
     }
 
-
+    public int GetSumScore()
+    {
+        return scaleScore + shakeScore + clickScore;
+    }
 }
