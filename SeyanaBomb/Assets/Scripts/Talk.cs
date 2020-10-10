@@ -101,6 +101,8 @@ public class Talk : MonoBehaviour
                     timeObj.GetComponentInChildren<Text>().text = "そこまで！";
                     time = 0;
                     viewedTime = 0;
+                    StaticValues.scaleScore = (int)((maxScale - 0.5f) * 10000);
+                    Debug.Log("scaleScore: " + StaticValues.scaleScore);
 
                     switch (maxScale)
                     {
@@ -125,9 +127,10 @@ public class Talk : MonoBehaviour
                         case 5.5f:
                         case 6.0f:
                         case 6.5f:
+                        case 7.0f:
                             SelifInstantiate(selifLeft, "わー、おっきい！\nさすがお姉ちゃん！", false);
                             break;
-                        case 7.0f:
+                        case 7.5f:
                             SelifInstantiate(selifLeft, "すごい！\n纏めきっちゃったね！", false);
                             break;
                     } 
@@ -218,6 +221,10 @@ public class Talk : MonoBehaviour
                     maxSeyanaObject.GetComponent<Seyana>().ResetPos();
 
                     float powerSum = bluePower + redPower;
+                    
+                    StaticValues.shakeScore = (int)Mathf.Min(50000, powerSum * 100);
+                    Debug.Log("shakeScore: " + StaticValues.shakeScore);
+
                     if (powerSum < 10)
                         SelifInstantiate(selifLeft, "すっぽ抜けちゃったかな？", false);
                     else if (powerSum < 50)
@@ -333,6 +340,11 @@ public class Talk : MonoBehaviour
                     SelifInstantiate(selifRight, "うわあああああ！！", false);
                     Instantiate(flashObject, transform);
                     AudioManager.Instance.PlaySE("flash");
+                    AudioManager.Instance.FadeOutBGM();
+
+                    
+                    StaticValues.clickScore = (int)Mathf.Min(50000, clickCount * 1000);
+                    Debug.Log("clickScore: " + StaticValues.clickScore);
                 }
             } else if (talkTime > 2)
             {
@@ -410,6 +422,5 @@ public class Talk : MonoBehaviour
     {
         clickCount++;
         clickBar.transform.localScale = new Vector3(1, (float)clickCount / 50, 1);
-        Debug.Log(clickCount);
     }
 }
