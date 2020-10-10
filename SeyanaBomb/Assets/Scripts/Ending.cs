@@ -5,19 +5,28 @@ using UnityEngine;
 public class Ending : MonoBehaviour
 {
     MessageText messageText;
-
+    int index;
 
     // Start is called before the first frame update
     void Start()
     {
         messageText = GameObject.Find("MessageText").GetComponent<MessageText>();
         messageText.SetMessage("- ？？？ -\n\nその日、旧人類は絶滅し、我々が誕生した。そう。我々セヤナー人類誕生の瞬間である。");
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool isClick = Input.GetMouseButtonDown(0);
+        if (!isClick)
+            return;
+
+        if (!messageText.IsViewed())
+        {
+            messageText.SetAllViewed();
+            return;
+        }
+
         int score = StaticValues.GetSumScore();
 
         if (score < 4000)

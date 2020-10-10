@@ -11,10 +11,12 @@ public class MessageText : MonoBehaviour
     string message;
     Text text;
     AudioSource source;
+    GameObject messageCursor;
 
     // Start is called before the first frame update
     void Awake()
     {
+        messageCursor = GameObject.Find("MessageCursor");
         text = GetComponent<Text>();
         source = GetComponent<AudioSource>();
         source.volume = 0.1f;
@@ -29,6 +31,7 @@ public class MessageText : MonoBehaviour
         if (viewWordCount >= message.Length)
         {
             source.Stop();
+            messageCursor.SetActive(true);
         }
         else if (viewTextTime > TEXT_INTERVAL)
         {
@@ -40,7 +43,7 @@ public class MessageText : MonoBehaviour
 
     public void SetMessage(string m)
     {
-        
+        messageCursor.SetActive(false);
         viewWordCount = 0;
         viewTextTime = 0;
         message = m;
@@ -52,6 +55,7 @@ public class MessageText : MonoBehaviour
         viewWordCount = message.Length;
         text.text = message.Substring(0, viewWordCount);
         source.Stop();
+        messageCursor.SetActive(true);
     }
 
     public bool IsViewed()
