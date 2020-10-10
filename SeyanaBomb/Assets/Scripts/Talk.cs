@@ -372,12 +372,19 @@ public class Talk : MonoBehaviour
             if (time > 3)
             {
                 state = State.RESULT;
-                flash.GetComponent<Animator>().SetBool("isDisappear", true);
-                Destroy(bar);
-                Destroy(clickBar);
-                Destroy(nowOrderText);
-                time = 0;
-                index = 0;
+
+                if (StaticValues.GetSumScore() < 10000)
+                {
+                    flash.GetComponent<Animator>().SetBool("isDisappear", true);
+                    Destroy(bar);
+                    Destroy(clickBar);
+                    Destroy(nowOrderText);
+                    time = 0;
+                    index = 0;
+                } else
+                {
+                    SceneManager.LoadScene("EndingScene");
+                }
             }
         }
         
