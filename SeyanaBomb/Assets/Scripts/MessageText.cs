@@ -8,7 +8,7 @@ public class MessageText : MonoBehaviour
     const float TEXT_INTERVAL = 0.05f;
     float viewTextTime;
     int viewWordCount;
-    string message;
+    string message = "";
     Text text;
     AudioSource source;
     GameObject messageCursor;
@@ -17,6 +17,7 @@ public class MessageText : MonoBehaviour
     void Awake()
     {
         messageCursor = GameObject.Find("MessageCursor");
+        messageCursor.SetActive(false);
         text = GetComponent<Text>();
         source = GetComponent<AudioSource>();
         source.volume = 0.1f;
@@ -27,6 +28,9 @@ public class MessageText : MonoBehaviour
     void Update()
     {
         viewTextTime += Time.deltaTime;
+
+        if (message == "")
+            return;
 
         if (viewWordCount >= message.Length)
         {
