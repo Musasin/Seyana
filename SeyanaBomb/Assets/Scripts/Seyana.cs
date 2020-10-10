@@ -111,7 +111,7 @@ public class Seyana : MonoBehaviour
                 {
                     var screenPos = Input.mousePosition;
                     screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
-                    if (screenPos.x < 0 || screenPos.x > 768 || screenPos.y < 0 || screenPos.y > 1024)
+                    if (screenPos.x < 0 || screenPos.x > Screen.width || screenPos.y < 0 || screenPos.y > Screen.height)
                     {
                         AudioManager.Instance.PlaySE("petyo");
                         isGrip = false;
