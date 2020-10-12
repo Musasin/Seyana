@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject endingResultObject, interviewer, aoi, companyBackground;
+    public GameObject endingResultObject, interviewer, akaneB, aoiB, seyanaB, aoi, companyBackground;
 
     string endingResultText;
     MessageText messageText;
@@ -20,7 +20,7 @@ public class Ending : MonoBehaviour
     
     GameObject backGroundObjects;
     GameObject seyanaPlanet;
-    GameObject company;
+    GameObject band, company;
 
     enum State
     {
@@ -36,6 +36,8 @@ public class Ending : MonoBehaviour
         messageText = GameObject.Find("MessageText").GetComponent<MessageText>();
 
         backGroundObjects = GameObject.Find("BackGroundObjects");
+        band = GameObject.Find("Band");
+        band.SetActive(false);
         company = GameObject.Find("Company");
         company.SetActive(false);
         seyanaPlanet = GameObject.Find("SeyanaPlanet");
@@ -43,11 +45,11 @@ public class Ending : MonoBehaviour
 
         int score = StaticValues.GetSumScore();
         if (score < 40000)
-            SetupCompany();         // 商品展開エンド
+            SetupBand();     // バンド結成エンド
         else if (score < 60000)
-            SetupHouseBroken();     // 家破壊エンド
-        else if (score < 90000)
             SetupAoiDead();         // 葵死亡エンド
+        else if (score < 90000)
+            SetupCompany();         // 商品展開エンド
         else if (score < 120000)
             SetupJapanCollapse();   // 日本崩壊エンド
         else if (score < 140000)
@@ -69,6 +71,15 @@ public class Ending : MonoBehaviour
             // フェードアウトを挟む
             SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
         }
+        
+        if (messages.Length == index)
+        {
+            time = 0;
+            state = State.RESULT;
+            GameObject obj = Instantiate(endingResultObject, transform);
+            obj.GetComponentInChildren<Text>().text = endingResultText;
+            return;
+        }
 
         bool isClick = Input.GetMouseButtonDown(0);
         if (!isClick && index != 0)
@@ -80,24 +91,18 @@ public class Ending : MonoBehaviour
             return;
         }
 
-        if (messages.Length == index)
-        {
-            time = 0;
-            state = State.RESULT;
-            GameObject obj = Instantiate(endingResultObject, transform);
-            obj.GetComponentInChildren<Text>().text = endingResultText;
-            return;
-        }
-
         messageText.SetMessage(messages[index]);
         if (gameObjects[index] != null)
         {
             if (gameObjects[index] == backGroundObjects)
+            {
                 backGroundObjects.GetComponent<Animator>().SetBool("tv_off", true);
+            }
             else
-            { 
+            {
                 GameObject obj = Instantiate(gameObjects[index], GameObject.Find("BackGroundObjects").transform);
-                if (obj.GetComponent<GraphDiffer>() != null) {
+                if (obj.GetComponent<GraphDiffer>() != null)
+                {
                     graphDiffer = obj.GetComponent<GraphDiffer>();
                 }
             }
@@ -107,7 +112,63 @@ public class Ending : MonoBehaviour
         
         index++;
     }
-
+    
+    private void SetupBand()
+    {
+        band.SetActive(true);
+        messages = new string[14]
+        {
+            "- 茜 -\n\nみんな〜！！",
+            "- 葵 -\n\n盛り上がってる〜？！",
+            "- セヤナー -\n\nﾔﾃﾞ-!!!",
+            "\n\nあの日。\nあの時を堺に、私達はバンドを結成した。",
+            "\n\n激しい振動とともに光り輝くセヤナーを見て、お姉ちゃんが「これや！！！」って言ってね",
+            "\n\n今では演出件ボーカルのセヤナーと、\nドラムのお姉ちゃん、\nそしてギターの私で細々とバンド活動をしてる。",
+            "\n\nやっぱり3人だと表現の幅に限界があるから、ベースのメンバーを募集中。",
+            "\n\nあの時はまさかこんな事になるなんて\n思いもしなかったけど...",
+            "- 茜 -\n\nなぁ葵！！",
+            "- 葵 -\n\nなぁにお姉ちゃん！",
+            "- 茜 -\n\n楽しいなぁ！！",
+            "- 葵 -\n\n......うん！！",
+            "\n\n今となっては、あの出会いに感謝しているんだ。",
+            " ",
+        };
+        gameObjects = new GameObject[14]
+        {
+            akaneB,
+            aoiB,
+            seyanaB,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        };
+        graphDiffs = new string[14]
+        {
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        };
+        endingResultText = "エンディング part.B\nバンド結成";
+    }
     private void SetupCompany()
     {
         company.SetActive(true);
@@ -146,21 +207,17 @@ public class Ending : MonoBehaviour
             "",
             "",
             "",
-            "aoi1",
+            "aoi_d1",
             "",
-            "aoi2",
-            "aoi3",
+            "aoi_d2",
+            "aoi_d3",
             "",
-            "aoi2",
+            "aoi_d2",
             "",
             "",
             "",
         };
-        endingResultText = "エンディング part.B\n全国展開";
-    }
-    private void SetupHouseBroken()
-    {
-    
+        endingResultText = "エンディング part.D\n全国展開";
     }
     private void SetupAoiDead()
     {
