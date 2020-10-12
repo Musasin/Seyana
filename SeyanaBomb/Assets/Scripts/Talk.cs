@@ -384,6 +384,7 @@ public class Talk : MonoBehaviour
                 } else
                 {
                     SceneManager.LoadScene("EndingScene");
+                    return;
                 }
             }
         }
