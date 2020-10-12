@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, companyBackground, horrorBackground, horrorBackground2;
+    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, companyBackground, horrorBackground, horrorBackground2, earth;
 
     string endingResultText;
     MessageText messageText;
@@ -19,8 +19,7 @@ public class Ending : MonoBehaviour
     GraphDiffer graphDiffer;
     
     GameObject backGroundObjects;
-    GameObject seyanaPlanet;
-    GameObject band, horror, company;
+    GameObject band, horror, company, humanExtinction, seyanaPlanet;
 
     enum State
     {
@@ -42,6 +41,8 @@ public class Ending : MonoBehaviour
         horror.SetActive(false);
         company = GameObject.Find("Company");
         company.SetActive(false);
+        humanExtinction = GameObject.Find("HumanExtinction");
+        humanExtinction.SetActive(false);
         seyanaPlanet = GameObject.Find("SeyanaPlanet");
         seyanaPlanet.SetActive(false);
 
@@ -186,7 +187,7 @@ public class Ending : MonoBehaviour
             "\n\nとにかくあのおぞましい光景が忘れられず、\n今でも大量のセヤナーが群がってくる夢を見る",
             "- 茜 -\n\nなんや、帰ってるなら電気くらい...",
             "- 茜 -\n\n......ヒッ",
-            "\n\nウチが最後に目にした物は、\n天井から降ってくるセヤナーの群れやった。",
+            "\n\nウチが最後に目にした物は、\n頭上から降ってくるセヤナーの群れやった。",
             " ",
         };
         gameObjects = new GameObject[12]
@@ -276,12 +277,33 @@ public class Ending : MonoBehaviour
     }
     private void SetupHumanExtinction()
     {
-        messages = new string[3]
+        humanExtinction.SetActive(true);
+        messages = new string[5]
         {
-            "\n\nセヤナー融合により放たれた大爆発は世界中を包み込み、一日にして世界地図を一色に塗り替えた。",
-            "\n\n。aaa",
-            ""
+            "\n\nセヤナー融合により放たれた大爆発は\n世界中を包み込み、",
+            "\n\n一日にして世界地図を一色に塗り替えた。",
+            "\n\n人類はおろか、\nあらゆる生物が死滅した世界は、",
+            "\n\n再びゆっくりと時を刻み始めるのであった。",
+            " ",
         };
+        
+        gameObjects = new GameObject[5]
+        {
+            null,
+            earth,
+            null,
+            null,
+            null,
+        };
+        graphDiffs = new string[5]
+        {
+            "",
+            "",
+            "",
+            "",
+            "",
+        };
+        endingResultText = "エンディング part.F\n人類滅亡";
     }
     private void SetupSeyanaPlanet()
     {
