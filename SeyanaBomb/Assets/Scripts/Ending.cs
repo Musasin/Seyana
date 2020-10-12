@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject endingResultObject, interviewer, akaneB, aoiB, seyanaB, aoi, companyBackground;
+    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, companyBackground, horrorBackground, horrorBackground2;
 
     string endingResultText;
     MessageText messageText;
@@ -20,7 +20,7 @@ public class Ending : MonoBehaviour
     
     GameObject backGroundObjects;
     GameObject seyanaPlanet;
-    GameObject band, company;
+    GameObject band, horror, company;
 
     enum State
     {
@@ -38,6 +38,8 @@ public class Ending : MonoBehaviour
         backGroundObjects = GameObject.Find("BackGroundObjects");
         band = GameObject.Find("Band");
         band.SetActive(false);
+        horror = GameObject.Find("Horror");
+        horror.SetActive(false);
         company = GameObject.Find("Company");
         company.SetActive(false);
         seyanaPlanet = GameObject.Find("SeyanaPlanet");
@@ -47,11 +49,11 @@ public class Ending : MonoBehaviour
         if (score < 40000)
             SetupBand();     // バンド結成エンド
         else if (score < 60000)
-            SetupAoiDead();         // 葵死亡エンド
+            SetupHorror();         // あなたの後ろにも亡エンド
         else if (score < 90000)
             SetupCompany();         // 商品展開エンド
         else if (score < 120000)
-            SetupJapanCollapse();   // 日本崩壊エンド
+            SetupSeyanaInvasion();   // セヤナー侵略エンド
         else if (score < 140000)
             SetupHumanExtinction(); // 人類滅亡エンド
         else
@@ -123,7 +125,7 @@ public class Ending : MonoBehaviour
             "- セヤナー -\n\nﾔﾃﾞ-!!!",
             "\n\nあの日。\nあの時を堺に、私達はバンドを結成した。",
             "\n\n激しい振動とともに光り輝くセヤナーを見て、お姉ちゃんが「これや！！！」って言ってね",
-            "\n\n今では演出件ボーカルのセヤナーと、\nドラムのお姉ちゃん、\nそしてギターの私で細々とバンド活動をしてる。",
+            "\n\n今では演出兼ボーカルのセヤナーと、\nドラムのお姉ちゃん、\nそしてギターの私で細々とバンド活動をしてる。",
             "\n\nやっぱり3人だと表現の幅に限界があるから、ベースのメンバーを募集中。",
             "\n\nあの時はまさかこんな事になるなんて\n思いもしなかったけど...",
             "- 茜 -\n\nなぁ葵！！",
@@ -145,8 +147,8 @@ public class Ending : MonoBehaviour
             null,
             null,
             null,
-            null,
-            null,
+            akaneB2,
+            aoiB2,
             null,
             null,
         };
@@ -168,6 +170,56 @@ public class Ending : MonoBehaviour
             "",
         };
         endingResultText = "エンディング part.B\nバンド結成";
+    }
+    private void SetupHorror()
+    {
+        horror.SetActive(true);
+        messages = new string[12]
+        {
+            "\n\n最近よく夢を見る。",
+            "\n\nきっかけはあの日。\n葵に言われるまま、セヤナー爆弾とかいう\nようわからん物を作ってから。",
+            "- 茜 -\n\nあおいー....\nまだ帰ってないんか？",
+            "\n\n爆発こそ大きな規模でなかったものの、\nなんと巨大化したセヤナーが分裂して\n初めよりも多くのセヤナーが生まれた。",
+            "- 茜 -\n\n鍵は開いとるな...",
+            "\n\nその時の光景は、なんというか、\n例えるならそう、カマキリの卵、みたいな。",
+            "- 茜 -\n\nただいまー...っと",
+            "\n\nとにかくあのおぞましい光景が忘れられず、\n今でも大量のセヤナーが群がってくる夢を見る",
+            "- 茜 -\n\nなんや、帰ってるなら電気くらい...",
+            "- 茜 -\n\n......ヒッ",
+            "\n\nウチが最後に目にした物は、\n天井から降ってくるセヤナーの群れやった。",
+            " ",
+        };
+        gameObjects = new GameObject[12]
+        {
+            akaneC,
+            horrorBackground,
+            akaneC,
+            null,
+            null,
+            null,
+            horrorBackground2,
+            seyanaC,
+            akaneC,
+            seyanaC2,
+            backGroundObjects,
+            null,
+        };
+        graphDiffs = new string[12]
+        {
+            "",
+            "",
+            "akane_c2",
+            "",
+            "akane_c1",
+            "",
+            "",
+            "",
+            "akane_c3",
+            "akane_c4",
+            "",
+            "",
+        };
+        endingResultText = "エンディング part.C\nあなたの後ろにも";
     }
     private void SetupCompany()
     {
@@ -217,13 +269,9 @@ public class Ending : MonoBehaviour
             "",
             "",
         };
-        endingResultText = "エンディング part.D\n全国展開";
+        endingResultText = "エンディング part.D\n商品展開";
     }
-    private void SetupAoiDead()
-    {
-
-    }
-    private void SetupJapanCollapse()
+    private void SetupSeyanaInvasion()
     {
     }
     private void SetupHumanExtinction()

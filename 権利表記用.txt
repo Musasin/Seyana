@@ -1,39 +1,51 @@
 
-[セヤナー立ち絵] 肩昆布（四つ壁P）様
+[セヤナー]
+肩昆布（四つ壁P）様
 https://seiga.nicovideo.jp/seiga/im6370526
 ガイドライン: https://ch.nicovideo.jp/YotsukabeP/blomaga/ar1288114
 
-[琴葉姉妹立ち絵] たちうお煮込み鍋 様
+[立ち絵] 
+たちうお煮込み鍋 様
 https://seiga.nicovideo.jp/seiga/im9368406
 
-[琴葉茜・琴葉葵・結月ゆかり立ち絵] ふらすこ 様
-https://seiga.nicovideo.jp/seiga/im5612416
+ふらすこ 様
 https://seiga.nicovideo.jp/seiga/im5629051
-https://seiga.nicovideo.jp/seiga/im4852034
 
-[女性立ち絵] ぶくりゃすずめ 様
+たしかなまんぞく 様
+https://seiga.nicovideo.jp/seiga/im5872529
+
+ぶくりゃすずめ 様
 http://commons.nicovideo.jp/material/nc175822
 
-[背景] いらすとや 様
+
+[背景] 
+いらすとや 様
 https://www.irasutoya.com/
 
-[背景] もさもさ生活 様
+もさもさ生活 様
 https://booth.pm/ja/items/1314711
 
-[背景] midori 様
+midori 様
 http://commons.nicovideo.jp/material/nc157094
 
-[吹き出し] フキダシデザイン 様
+
+[その他画像素材] 
+フキダシデザイン 様
 https://fukidesign.com/
 
-[集中線] 小樽総合デザイン事務局 様
+小樽総合デザイン事務局 様
 https://otarunet.com/it/webdesign/comic-material-effect01/
 
-[タイトルBGM] 音小屋 様
-https://www.dlsite.com/maniax/work/=/product_id/RJ262524.html
 
-[ゲーム中BGM] MusMus 様
+[BGM] 
+MusMus 様
 https://www.irasutoya.com/
 
-[SE] 効果音ラボ 様
+音小屋 様
+https://www.dlsite.com/maniax/work/=/product_id/RJ262524.html
+https://www.dlsite.com/maniax/work/=/product_id/RJ260519.html
+
+
+[SE]
+効果音ラボ 様
 https://soundeffect-lab.info/
