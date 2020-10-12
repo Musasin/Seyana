@@ -316,4 +316,9 @@ public class Ending : MonoBehaviour
         };
 
     }
+
+    public void SkipButton()
+    {
+        SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
+    }
 }
