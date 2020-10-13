@@ -73,11 +73,10 @@ public class Ending : MonoBehaviour
         if (state == State.RESULT)
         {
             state = State.END;
-            // フェードアウトを挟む
-            SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
+            SceneManager.LoadScene("ResultScene");
         }
         
-        if (messages.Length == index)
+        if (messages.Length == index && state == State.PLAY)
         {
             time = 0;
             state = State.RESULT;
@@ -380,6 +379,6 @@ public class Ending : MonoBehaviour
 
     public void SkipButton()
     {
-        SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
+        SceneManager.LoadScene("ResultScene");
     }
 }
