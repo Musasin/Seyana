@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, companyBackground, horrorBackground, horrorBackground2, earth;
+    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, akaneE, akaneE2, akaneE3, akaneE4, aoiE, aoiE2, aoiE3, seyanaE, seyanaE2, seyanaE3, seyanaE4, seyanaE5, companyBackground, horrorBackground, horrorBackground2, earth;
 
     string endingResultText;
     MessageText messageText;
@@ -19,7 +19,7 @@ public class Ending : MonoBehaviour
     GraphDiffer graphDiffer;
     
     GameObject backGroundObjects;
-    GameObject band, horror, company, humanExtinction, seyanaPlanet;
+    GameObject band, horror, company, humanExtinction, seyanaInvasion, seyanaPlanet;
 
     enum State
     {
@@ -43,6 +43,8 @@ public class Ending : MonoBehaviour
         company.SetActive(false);
         humanExtinction = GameObject.Find("HumanExtinction");
         humanExtinction.SetActive(false);
+        seyanaInvasion = GameObject.Find("SeyanaInvasion");
+        seyanaInvasion.SetActive(false);
         seyanaPlanet = GameObject.Find("SeyanaPlanet");
         seyanaPlanet.SetActive(false);
 
@@ -274,6 +276,65 @@ public class Ending : MonoBehaviour
     }
     private void SetupSeyanaInvasion()
     {
+        seyanaInvasion.SetActive(true);
+        messages = new string[16]
+        {
+            "- 葵 -\n\nお姉ちゃん！生きてる？！",
+            "- 茜 -\n\n当たり前や！\nウチを誰やと思うてんねん！",
+            "\n\n私達は今、地球外生命体と\n小規模な宇宙戦争を繰り広げている。",
+            "\n\nきっかけはあの日。\nあのセヤナー爆弾だ。",
+            "\nこれは後から知ったんだけど、セヤナー達は\n特定間隔での振動,発光で宇宙にいる\nセヤナーに交信しており、今回の調合で\nたまたまSOSと合致してしまっていたらしい。",
+            "\n\nそれを聞きつけた宇宙セヤナー達が\n地球に攻め込んできたというわけ。",
+            "- 茜 -\n\n数が多すぎる！\nキリがないで！",
+            "- 葵 -\n\n物資ももうだいぶ心許ないよお姉ちゃん...!",
+            "\n\n私達は、\n自分の撒いた火種を回収すべく戦っている。",
+            "- 葵 -\n\n......ごめんねお姉ちゃん\nこんなことになっちゃって...。",
+            "- 茜 -\n\nもー！何回目やそれ！",
+            "- 茜 -\n\nウチはそんなこと気にしとらんし、\nどんなことがあっても葵とずっと一緒やで！",
+            "- 葵 -\n\nお姉ちゃん....",
+            "\n\nたとえこの戦いに終わりがなくとも。",
+            "\n\nきっと私達は最後まで戦い続けるのだろう。",
+            " ",
+        };
+        gameObjects = new GameObject[16]
+        {
+            aoiE,
+            akaneE,
+            null,
+            seyanaE,
+            seyanaE2,
+            seyanaE3,
+            akaneE2,
+            aoiE2,
+            seyanaE4,
+            aoiE3,
+            akaneE3,
+            akaneE4,
+            aoiE2,
+            seyanaE5,
+            seyanaE3,
+            null,
+        };
+        graphDiffs = new string[16]
+        {
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        };
+        endingResultText = "エンディング part.E\nセヤナー侵略";
     }
     private void SetupHumanExtinction()
     {
