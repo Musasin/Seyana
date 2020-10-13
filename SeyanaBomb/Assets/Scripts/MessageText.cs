@@ -20,8 +20,6 @@ public class MessageText : MonoBehaviour
         messageCursor.SetActive(false);
         text = GetComponent<Text>();
         source = GetComponent<AudioSource>();
-        source.volume = 0.1f;
-        source.loop = true;
     }
 
     // Update is called once per frame

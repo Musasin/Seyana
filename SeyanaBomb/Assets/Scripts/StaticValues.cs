@@ -21,7 +21,7 @@ public class StaticValues : MonoBehaviour
 
     public static int GetSumScore()
     {
-        //return 30000; // テスト用仮
-        return scaleScore + shakeScore + clickScore;
+        return 80000; // テスト用仮
+        //return scaleScore + shakeScore + clickScore;
     }
 }
