@@ -18,8 +18,8 @@ public class Result : MonoBehaviour
         StaticValues.SaveEnding();
         StaticValues.Load();
         GameObject.Find("ScaleScore").GetComponent<Text>().text = StaticValues.scaleScore.ToString();
-        GameObject.Find("ShakeScore").GetComponent<Text>().text = StaticValues.clickScore.ToString();
-        GameObject.Find("ClickScore").GetComponent<Text>().text = StaticValues.shakeScore.ToString();
+        GameObject.Find("ShakeScore").GetComponent<Text>().text = StaticValues.shakeScore.ToString();
+        GameObject.Find("ClickScore").GetComponent<Text>().text = StaticValues.clickScore.ToString();
         GameObject.Find("SumScore").GetComponent<Text>().text = StaticValues.GetSumScore().ToString();
         
         GameObject.Find("EndingListText").GetComponent<Text>().text = "";
