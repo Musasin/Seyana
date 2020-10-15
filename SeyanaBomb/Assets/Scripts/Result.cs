@@ -12,6 +12,7 @@ public class Result : MonoBehaviour
     float talkTime;
     GameObject nowSelifObject;
 
+    string tweetText;
     string tweetEndingTitle;
 
     // Start is called before the first frame update
@@ -38,24 +39,31 @@ public class Result : MonoBehaviour
         switch (StaticValues.GetNowEnding())
         {
             case 0:
+                tweetText = "セヤナー爆弾は不発に終わり、";
                 tweetEndingTitle = "A. 不発";
                 break;
             case 1:
+                tweetText = "セヤナーの可能性を感じてバンド結成！\n";
                 tweetEndingTitle = "B. バンド結成";
                 break;
             case 2:
+                tweetText = "「もう、こんな所で寝ないでよお姉ちゃ...ん...?」\n";
                 tweetEndingTitle = "C. あなたの後ろにも";
                 break;
             case 3:
+                tweetText = "セヤナー爆弾は一躍大ヒット！\n";
                 tweetEndingTitle = "D. 商品展開";
                 break;
             case 4:
+                tweetText = "セヤナー軍との戦いは続く。\n";
                 tweetEndingTitle = "E. セヤナー侵略";
                 break;
             case 5:
+                tweetText = "";
                 tweetEndingTitle = "F. 人類滅亡";
                 break;
             case 6:
+                tweetText = "ｾﾔﾅｰ\n";
                 tweetEndingTitle = "G. セヤナーの星";
                 break;
         }
@@ -112,7 +120,7 @@ public class Result : MonoBehaviour
     public void Tweet()
     {
         string url = "https://twitter.com/intent/tweet?text=" +
-            WWW.EscapeURL("トータルスコア " + StaticValues.GetSumScore() + " でエンディング\"" + tweetEndingTitle + "\"をクリアしました！\n#ボイゲジャム #セヤナー爆弾\nhttps://musasin.itch.io/seyana-bomb");
+            WWW.EscapeURL(tweetText + "トータルスコア " + StaticValues.GetSumScore() + " でエンディング\"" + tweetEndingTitle + "\"をクリアしました！\n#ボイゲジャム #セヤナー爆弾\nhttps://musasin.itch.io/seyana-bomb");
 #if UNITY_EDITOR
         Application.OpenURL(url);
 #elif UNITY_WEBGL
