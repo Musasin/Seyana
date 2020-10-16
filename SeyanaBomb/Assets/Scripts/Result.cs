@@ -63,7 +63,7 @@ public class Result : MonoBehaviour
                 tweetEndingTitle = "F. 人類滅亡";
                 break;
             case 6:
-                tweetText = "ｾﾔﾅｰ\n";
+                tweetText = "「ｾﾔﾅｰ」\n";
                 tweetEndingTitle = "G. セヤナーの星";
                 break;
         }
@@ -92,6 +92,16 @@ public class Result : MonoBehaviour
             case 2:
                 index++;
                 SelifInstantiate(selifRight, "アルファベットの\n並びはスコア順に\nなってるらしいで", false);
+                talkTime = 0;
+                break;
+            case 3:
+                index++;
+                SelifInstantiate(selifLeft, "最大スコアの\n理論値は\n170000だよ！", false);
+                talkTime = 0;
+                break;
+            case 4:
+                index = 0;
+                SelifInstantiate(selifRight, "本当に出せるか\nどうかは知らんで", false);
                 talkTime = 0;
                 break;
         }

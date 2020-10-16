@@ -271,6 +271,11 @@ MonoBehaviour:
     type: 3}
   seyanaE5: {fileID: 2464526481731966192, guid: 942f996cbe555498196f2ac6fe699dde,
     type: 3}
+  seyanaG: {fileID: 3721496161638948611, guid: f87efeda3864c40aab5cf125c7ae5052, type: 3}
+  seyanaG2: {fileID: 4129848879312703455, guid: 233735d7450d24ebd84ed3abb40e0270,
+    type: 3}
+  seyanaG3: {fileID: 7017209961192658556, guid: eaf6aca439fb54daca1f13ecf8e53bf8,
+    type: 3}
   companyBackground: {fileID: 189923079911973755, guid: eadfe0ad444304325b9cf839ae2a0c7d,
     type: 3}
   horrorBackground: {fileID: 6257605655596290832, guid: 97eb2e0068d174ddbb00f36d11978db0,
@@ -481,7 +486,7 @@ Transform:
   m_Children:
   - {fileID: 419418103031234057}
   m_Father: {fileID: 1684089632}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &421019306
 GameObject:
@@ -2145,9 +2150,9 @@ Transform:
   - {fileID: 589778381}
   - {fileID: 1913335874}
   - {fileID: 812299112}
+  - {fileID: 1796329531}
   - {fileID: 2139024913}
   - {fileID: 385010374}
-  - {fileID: 1796329531}
   m_Father: {fileID: 109201020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2199,7 +2204,7 @@ Transform:
   m_Children:
   - {fileID: 843961478}
   m_Father: {fileID: 1684089632}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806551642
 GameObject:
@@ -2460,7 +2465,7 @@ Transform:
   - {fileID: 1453872085}
   - {fileID: 738544997}
   m_Father: {fileID: 1684089632}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &419418103031234056
 GameObject:

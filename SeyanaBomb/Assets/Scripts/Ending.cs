@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour
 {
-    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi, akaneE, akaneE2, akaneE3, akaneE4, aoiE, aoiE2, aoiE3, seyanaE, seyanaE2, seyanaE3, seyanaE4, seyanaE5, companyBackground, horrorBackground, horrorBackground2, earth;
+    public GameObject endingResultObject, interviewer, akaneB, aoiB, akaneB2, aoiB2, seyanaB, akaneC, seyanaC, seyanaC2, aoi;
+    public GameObject akaneE, akaneE2, akaneE3, akaneE4, aoiE, aoiE2, aoiE3, seyanaE, seyanaE2, seyanaE3, seyanaE4, seyanaE5; 
+    public GameObject seyanaG, seyanaG2, seyanaG3, companyBackground, horrorBackground, horrorBackground2, earth;
 
     string endingResultText;
     MessageText messageText;
@@ -368,13 +370,62 @@ public class Ending : MonoBehaviour
     private void SetupSeyanaPlanet()
     {
         seyanaPlanet.SetActive(true);
-        messages = new string[3]
+        messages = new string[15]
         {
+            "\n\n〜XXXX年後〜",
+            "\n\nセヤナー爆弾によって\n地球は完全に塵と化した。",
+            "\n\nその爆発は留まることを知らず、\n新たな銀河系が生まれるまでに至った。",
+            "\n\n言うなれば第二のビッグバンとして、\n世界を作り変える爆発に昇華したのである。",
+            "\n\nかつて人類がそうであったように、\n果てしない時を経て誕生と進化を繰り返し、\n新たな星を支配する生物が生まれた。",
             "- ？？？ -\n\nその日、旧人類は絶滅し、我々が誕生した。そう。我々セヤナー人類誕生の瞬間である。",
-            "\n\n。aaa",
-            ""
+            "- セヤナー？ -\n\nここまでで何か質問のある者は？",
+            "- 小さいセヤナー？ -\n\nはーい！\nお話に出てくる爆弾と私達はよく似ている\nけど、ご先祖様だったりするんですか？",
+            "- セヤナー？ -\n\n起源セヤナー神のことだね。\n諸説あるけども、爆発とともに四散した\n遺伝子を元に我々が生まれたとする説が\n有力とされているよ。",
+            "- セヤナー？ -\n\nつまりはご先祖様かもしれないってことだね。",
+            "- 小さいセヤナー？ -\n\nすごーい！\n私達も爆発できる？！",
+            "- セヤナー？ -\n\n残念だけど、進化の過程で爆発の性質は\n失わてしまってね。\n代わりに知能や言語能力が\n発達していったのさ。",
+            "- セヤナー？ -\n\nさ、本日の講義はここまで。\n次回は変異種ダヨネー族について\n触れるから、予習しておくように。",
+            "- 小さいセヤナー？ -\n\nはーい！",
+            " ",
         };
-
+        
+        gameObjects = new GameObject[15]
+        {
+            null,
+            null,
+            null,
+            null,
+            null,
+            seyanaG,
+            seyanaG2,
+            seyanaG3,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        };
+        graphDiffs = new string[15]
+        {
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        };
+        endingResultText = "エンディング part.G\nセヤナーの星";
     }
 
     public void SkipButton()
