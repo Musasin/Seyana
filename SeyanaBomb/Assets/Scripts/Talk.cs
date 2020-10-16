@@ -400,7 +400,7 @@ public class Talk : MonoBehaviour
             }
 
             if (index >= 9 && time > 3.0f) {
-                SceneManager.LoadScene("TitleScene"); // 仮。 リザルト画面を作ったらそっちに飛ばす
+                SceneManager.LoadScene("ResultScene");
             }
 
             if (Input.GetMouseButtonDown(0) && time > 1.0f)

@@ -78,7 +78,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0 PART A\n\u4E0D\u767A"
+  m_Text: "\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0 PART A\n\u4E0D\u767A\n\n        endingResultText
+    = \"\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0 part.D\\n\u5546\u54C1\u5C55\u958B\";"
 --- !u!1 &7385716242820917233
 GameObject:
   m_ObjectHideFlags: 0
