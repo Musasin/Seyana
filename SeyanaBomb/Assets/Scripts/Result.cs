@@ -63,7 +63,38 @@ public class Result : MonoBehaviour
                 tweetEndingTitle = "F. 人類滅亡";
                 break;
             case 6:
-                tweetText = "「ｾﾔﾅｰ」\n";
+                int rand = Random.Range(0, 10);
+                switch (rand)
+                {
+                    case 1:
+                        tweetText = "「ｳﾁﾅｰ」\n";
+                        break;
+                    case 2:
+                        tweetText = "「ｱｵｲｰ」\n";
+                        break;
+                    case 3:
+                        tweetText = "「ﾔｰ」\n";
+                        break;
+                    case 4:
+                        tweetText = "「ｴﾋﾞﾌﾗｲｰ」\n";
+                        break;
+                    case 5:
+                        tweetText = "「ﾅﾝﾃﾞｰ?」\n";
+                        break;
+                    case 6:
+                        tweetText = "「ｾﾔｾﾔ」\n";
+                        break;
+                    case 7:
+                    case 8:
+                        tweetText = "「ﾔﾃﾞｰ」\n";
+                        break;
+                    case 0:
+                    case 9:
+                    default:
+                        tweetText = "「ｾﾔﾅｰ」\n";
+                        break;
+
+                }
                 tweetEndingTitle = "G. セヤナーの星";
                 break;
         }
