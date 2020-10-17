@@ -47,7 +47,7 @@ public class StaticValues : MonoBehaviour
     {
         if (GetSumScore() < 10000)
             return 0;
-        if (GetSumScore() < 40000)
+        else if (GetSumScore() < 40000)
             return 1; // バンド結成エンド
         else if (GetSumScore() < 60000)
             return 2; // あなたの後ろにも亡エンド
@@ -64,7 +64,7 @@ public class StaticValues : MonoBehaviour
     {
         if (GetSumScore() < 10000)
             PlayerPrefs.SetInt("EndingA", 1);
-        if (GetSumScore() < 40000)
+        else if (GetSumScore() < 40000)
             PlayerPrefs.SetInt("EndingB", 1);
         else if (GetSumScore() < 60000)
             PlayerPrefs.SetInt("EndingC", 1);
