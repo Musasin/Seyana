@@ -670,7 +670,7 @@ RectTransform:
   m_GameObject: {fileID: 560978596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1913335874}
   m_RootOrder: 0
@@ -1138,7 +1138,7 @@ RectTransform:
   m_GameObject: {fileID: 755493623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 1433081617}
   m_Father: {fileID: 589778381}
@@ -1430,7 +1430,7 @@ RectTransform:
   m_GameObject: {fileID: 843961477}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1796329531}
   m_RootOrder: 0
@@ -1586,6 +1586,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndingFlash
       objectReference: {fileID: 0}
+    - target: {fileID: 2974478611745833450, guid: 89dc0fc2c0eab4e42b6de7b5bc7cb8d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2974478611745833452, guid: 89dc0fc2c0eab4e42b6de7b5bc7cb8d9,
         type: 3}
       propertyPath: m_RaycastTarget
@@ -1664,7 +1669,7 @@ PrefabInstance:
     - target: {fileID: 2974478611745833453, guid: 89dc0fc2c0eab4e42b6de7b5bc7cb8d9,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1024
+      value: 1724
       objectReference: {fileID: 0}
     - target: {fileID: 2974478611745833453, guid: 89dc0fc2c0eab4e42b6de7b5bc7cb8d9,
         type: 3}
@@ -1824,7 +1829,7 @@ RectTransform:
   m_GameObject: {fileID: 1293966488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 812299112}
   m_RootOrder: 0
@@ -1975,7 +1980,7 @@ RectTransform:
   m_GameObject: {fileID: 1453872084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 2139024913}
   m_RootOrder: 0
@@ -2495,7 +2500,7 @@ RectTransform:
   m_GameObject: {fileID: 419418103031234056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 385010374}
   m_RootOrder: 0
