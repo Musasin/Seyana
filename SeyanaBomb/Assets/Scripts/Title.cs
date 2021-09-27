@@ -22,7 +22,14 @@ public class Title : MonoBehaviour
     {
         animTime += Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) && !taped)
+        if (taped && animTime > 1.15f) { 
+            SceneManager.LoadScene("MainScene");
+        }
+    }
+
+    public void TapStart()
+    {
+        if (!taped)
         {
             anim1.SetBool("Tap", true);
             anim2.SetBool("Tap", true);
@@ -30,10 +37,6 @@ public class Title : MonoBehaviour
             AudioManager.Instance.PlaySE("machdash1");
             taped = true;
             animTime = 0;
-        }
-
-        if (taped && animTime > 1.15f) { 
-            SceneManager.LoadScene("MainScene");
         }
     }
 }

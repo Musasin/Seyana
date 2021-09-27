@@ -161,7 +161,7 @@ public class Result : MonoBehaviour
     public void Tweet()
     {
         string url = "https://twitter.com/intent/tweet?text=" +
-            WWW.EscapeURL(tweetText + "トータルスコア " + StaticValues.GetSumScore() + " でエンディング\"" + tweetEndingTitle + "\"をクリアしました！\n#ボイゲジャム #セヤナー爆弾\nhttps://musasin.itch.io/seyana-bomb");
+            WWW.EscapeURL(tweetText + "トータルスコア " + StaticValues.GetSumScore() + " でエンディング\"" + tweetEndingTitle + "\"をクリアしました！\n#セヤナー爆弾\nhttps://play.google.com/store/apps/details?id=com.musasin.seyanabomb");
 #if UNITY_EDITOR
         Application.OpenURL(url);
 #elif UNITY_WEBGL
